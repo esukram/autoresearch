@@ -1,0 +1,150 @@
+{
+  "description": "Test cases for evaluating the autoresearch skill via skill-creator",
+  "test_cases": [
+    {
+      "id": "python-test-coverage",
+      "prompt": "Improve test coverage for this Python project to at least 80%",
+      "setup": {
+        "description": "A Python project with pytest, low test coverage (~40%), source in src/, tests in tests/",
+        "language": "python",
+        "files": {
+          "pyproject.toml": "[tool.pytest.ini_options]\ntestpaths = [\"tests\"]\n\n[project]\nname = \"example\"\nversion = \"0.1.0\"\n",
+          "src/calculator.py": "def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\ndef divide(a, b):\n    if b == 0:\n        raise ValueError(\"Cannot divide by zero\")\n    return a / b\n\ndef power(a, b):\n    return a ** b\n\ndef modulo(a, b):\n    if b == 0:\n        raise ValueError(\"Cannot modulo by zero\")\n    return a % b\n",
+          "tests/test_calculator.py": "from src.calculator import add, subtract\n\ndef test_add():\n    assert add(2, 3) == 5\n\ndef test_subtract():\n    assert subtract(5, 3) == 2\n"
+        }
+      },
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "description": "Generated skill SKILL.md exists"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "description": "Generated eval.json exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "coverage",
+          "description": "eval.json contains coverage-related eval"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "pytest",
+          "description": "eval.json uses pytest as the test command"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/scripts/eval_runner.py",
+          "description": "Python eval_runner script exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "pattern": "target_files|target files",
+          "description": "SKILL.md references target files"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "protected_files",
+          "description": "eval.json defines protected files"
+        }
+      ]
+    },
+    {
+      "id": "nodejs-api-performance",
+      "prompt": "Optimize the API response time for this Express app to be under 100ms average",
+      "setup": {
+        "description": "A Node.js Express project with TypeScript, slow API endpoints, existing tests",
+        "language": "typescript",
+        "files": {
+          "package.json": "{\n  \"name\": \"api-server\",\n  \"scripts\": { \"test\": \"jest\", \"build\": \"tsc\" },\n  \"dependencies\": { \"express\": \"^4.18.0\" },\n  \"devDependencies\": { \"jest\": \"^29.0.0\", \"typescript\": \"^5.0.0\", \"@types/express\": \"^4.17.0\", \"ts-jest\": \"^29.0.0\" }\n}\n",
+          "tsconfig.json": "{ \"compilerOptions\": { \"target\": \"ES2020\", \"module\": \"commonjs\", \"outDir\": \"dist\", \"strict\": true } }",
+          "src/routes/users.ts": "import { Router } from 'express';\nconst router = Router();\nrouter.get('/', async (req, res) => {\n  // Simulated slow query\n  const users = await fetchUsers();\n  res.json(users);\n});\nexport default router;\n",
+          "tests/users.test.ts": "describe('users', () => {\n  it('returns users', () => {\n    expect(true).toBe(true);\n  });\n});\n"
+        }
+      },
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "description": "Generated skill SKILL.md exists"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "description": "Generated eval.json exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "latency|response.time|performance|100",
+          "description": "eval.json contains performance-related eval"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/scripts/eval_runner.js",
+          "description": "JavaScript eval_runner script exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "src/routes|src/middleware",
+          "description": "eval.json targets route/middleware files"
+        }
+      ]
+    },
+    {
+      "id": "go-edge-case-tests",
+      "prompt": "Add edge case tests for this Go utility library to achieve 90% coverage",
+      "setup": {
+        "description": "A Go utility library with basic tests but missing edge cases",
+        "language": "go",
+        "files": {
+          "go.mod": "module example.com/utils\n\ngo 1.21\n",
+          "stringutil/stringutil.go": "package stringutil\n\nfunc Reverse(s string) string {\n\tresult := []rune(s)\n\tfor i, j := 0, len(result)-1; i < j; i, j = i+1, j-1 {\n\t\tresult[i], result[j] = result[j], result[i]\n\t}\n\treturn string(result)\n}\n\nfunc IsPalindrome(s string) bool {\n\treturn s == Reverse(s)\n}\n\nfunc Truncate(s string, maxLen int) string {\n\tif maxLen < 0 {\n\t\treturn \"\"\n\t}\n\trunes := []rune(s)\n\tif len(runes) <= maxLen {\n\t\treturn s\n\t}\n\tif maxLen <= 3 {\n\t\treturn string(runes[:maxLen])\n\t}\n\treturn string(runes[:maxLen-3]) + \"...\"\n}\n",
+          "stringutil/stringutil_test.go": "package stringutil\n\nimport \"testing\"\n\nfunc TestReverse(t *testing.T) {\n\tif got := Reverse(\"hello\"); got != \"olleh\" {\n\t\tt.Errorf(\"Reverse(hello) = %s, want olleh\", got)\n\t}\n}\n\nfunc TestIsPalindrome(t *testing.T) {\n\tif !IsPalindrome(\"racecar\") {\n\t\tt.Error(\"racecar should be a palindrome\")\n\t}\n}\n"
+        }
+      },
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "description": "Generated skill SKILL.md exists"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "description": "Generated eval.json exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "go test",
+          "description": "eval.json uses go test"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "_test.go",
+          "description": "eval.json targets Go test files"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/scripts/eval_runner.sh",
+          "description": "Shell eval_runner script exists for Go project"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "90",
+          "description": "eval.json has 90% coverage threshold"
+        }
+      ]
+    }
+  ]
+}
