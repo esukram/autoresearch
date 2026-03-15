@@ -4,18 +4,10 @@ Autonomous iterative optimization for Claude Code. Generates standalone skills t
 
 ## Installation
 
-### From a marketplace
-
-If this plugin is listed in a marketplace you've already added:
-
-```
-/plugin install autoresearch
-```
-
 ### From GitHub
 
 ```
-/plugin marketplace add <owner>/autoresearch-skill
+/plugin marketplace add esukram/autoresearch-skill
 /plugin install autoresearch
 ```
 
