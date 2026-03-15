@@ -1,18 +1,18 @@
 {
-  "status": "running",
-  "state": "decide",
+  "status": "complete",
+  "state": "done",
   "iteration": 3,
   "baseline": null,
   "current": {
-    "pass_count": 7,
-    "fail_count": 1,
+    "pass_count": 8,
+    "fail_count": 0,
     "total": 8
   },
   "best": {
-    "pass_count": 7,
-    "fail_count": 1,
+    "pass_count": 8,
+    "fail_count": 0,
     "total": 8,
-    "iteration": 2
+    "iteration": 3
   },
   "hypotheses": [
     {
@@ -43,10 +43,12 @@
         "skills/autoresearch/references/domain-strategies.md"
       ],
       "timestamp": "2026-03-15T18:56:09Z",
-      "result": null
+      "result": "committed"
     }
   ],
   "plateau_counter": 0,
   "started_at": "2026-03-15T18:53:25Z",
-  "last_updated": "2026-03-15T18:57:07Z"
+  "last_updated": "2026-03-15T18:57:14Z",
+  "done_reason": "complete",
+  "completed_at": "2026-03-15T18:57:14Z"
 }
