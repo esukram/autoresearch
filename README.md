@@ -8,6 +8,9 @@ Autonomous iterative optimization for Claude Code. Generates standalone skills t
 
 ```
 /plugin marketplace add esukram/autoresearch
+```
+
+```
 /plugin install autoresearch
 ```
 
