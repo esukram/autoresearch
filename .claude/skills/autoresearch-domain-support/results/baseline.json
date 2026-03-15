@@ -1,0 +1,65 @@
+{
+  "iteration": 0,
+  "timestamp": "2026-03-15T18:53:29Z",
+  "results": [
+    {
+      "eval_id": "strategy-completeness",
+      "passed": false,
+      "output_summary": "FAIL: Strategy 'custom' missing section: Analysis approach\nFAIL: Strategy 'custom' missing section: Hypothesis patterns\nFAIL: Strategy 'custom' missing section: Common pitfalls\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "strategy-depth",
+      "passed": false,
+      "output_summary": "FAIL: Strategy 'custom' has 0 hypothesis patterns (need 3)\nFAIL: Strategy 'custom' has 0 pitfalls (need 3)\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "json-examples-valid",
+      "passed": true,
+      "output_summary": "PASS: All 8 concrete JSON examples are valid\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "script-syntax-valid",
+      "passed": true,
+      "output_summary": "PASS: All 4 script templates pass syntax checks (Python: 2, JS: 1, Shell: 1)\n",
+      "duration_seconds": 0.08,
+      "timed_out": false
+    },
+    {
+      "eval_id": "eval-domain-coverage",
+      "passed": false,
+      "output_summary": "FAIL: Only 3/6 strategies covered in evals.json\n  Covered: coverage-improvement, performance-optimization, test-hardening\n  Missing: code-quality, custom, feature-completion\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "cross-ref-consistency",
+      "passed": true,
+      "output_summary": "PASS: Strategy references are consistent across files\n",
+      "duration_seconds": 0.05,
+      "timed_out": false
+    },
+    {
+      "eval_id": "pass-condition-docs",
+      "passed": true,
+      "output_summary": "PASS: All 5 pass_condition types are documented with examples\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "strategy-actionability",
+      "passed": false,
+      "output_summary": "FAIL: Strategy 'performance-optimization' lacks concrete file glob patterns\nFAIL: Strategy 'test-hardening' lacks concrete file glob patterns\nFAIL: Strategy 'code-quality' lacks concrete file glob patterns\nFAIL: Strategy 'feature-completion' lacks concrete file glob patterns\nFAIL: Strategy 'custom' missing target file patterns\nFAIL: Strategy 'custom' missing protected file patterns\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    }
+  ],
+  "pass_count": 4,
+  "fail_count": 4,
+  "total": 8
+}
