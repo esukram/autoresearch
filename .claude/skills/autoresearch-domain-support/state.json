@@ -1,18 +1,18 @@
 {
   "status": "running",
   "state": "decide",
-  "iteration": 2,
+  "iteration": 3,
   "baseline": null,
   "current": {
-    "pass_count": 6,
-    "fail_count": 2,
+    "pass_count": 7,
+    "fail_count": 1,
     "total": 8
   },
   "best": {
-    "pass_count": 6,
-    "fail_count": 2,
+    "pass_count": 7,
+    "fail_count": 1,
     "total": 8,
-    "iteration": 1
+    "iteration": 2
   },
   "hypotheses": [
     {
@@ -33,10 +33,20 @@
         "evals/evals.json"
       ],
       "timestamp": "2026-03-15T18:55:11Z",
+      "result": "committed"
+    },
+    {
+      "iteration": 3,
+      "hypothesis": "Adding concrete glob patterns (e.g. **/*.ts, **/*.py) to Target/Protected file patterns in performance-optimization, test-hardening, code-quality, and feature-completion strategies will fix the actionability eval",
+      "target_eval": "strategy-actionability",
+      "target_files": [
+        "skills/autoresearch/references/domain-strategies.md"
+      ],
+      "timestamp": "2026-03-15T18:56:09Z",
       "result": null
     }
   ],
   "plateau_counter": 0,
   "started_at": "2026-03-15T18:53:25Z",
-  "last_updated": "2026-03-15T18:55:59Z"
+  "last_updated": "2026-03-15T18:57:07Z"
 }

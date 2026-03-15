@@ -51,9 +51,9 @@ This document defines optimization strategies for different domains. The `strate
 - Breaking correctness for speed
 - Optimizing the benchmark instead of the code
 
-**Target file patterns:** Route handlers, data access layers, middleware, hot-path functions
+**Target file patterns:** `src/routes/**/*.ts`, `src/handlers/**/*.py`, `app/controllers/**/*.rb`, `**/middleware/**`, `**/services/**`
 
-**Protected file patterns:** Tests, config, lock files, migration files
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `*.config.*`, `*.lock`, `**/migrations/**`
 
 ---
 
@@ -79,9 +79,9 @@ This document defines optimization strategies for different domains. The `strate
 - Testing edge cases without understanding the expected behavior
 - Forgetting to test both the happy path and the error path for each edge case
 
-**Target file patterns:** Test files matching the project's test file pattern
+**Target file patterns:** `tests/**/*.py`, `**/*_test.go`, `**/*.test.ts`, `**/*.test.js`, `**/*.spec.ts`, `test/**/*.rb`
 
-**Protected file patterns:** Source code (when only hardening tests), config files
+**Protected file patterns:** `src/**/*`, `lib/**/*`, `*.config.*`, `*.lock`, `go.mod`, `go.sum`
 
 ---
 
@@ -106,9 +106,9 @@ This document defines optimization strategies for different domains. The `strate
 - Over-abstracting to reduce complexity metrics
 - Changing public APIs to fix style issues
 
-**Target file patterns:** Source files matching the linter's scope
+**Target file patterns:** `src/**/*.py`, `src/**/*.ts`, `lib/**/*.rb`, `**/*.go`, `src/**/*.rs`
 
-**Protected file patterns:** Test files, config files, generated files
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `**/*.test.*`, `*.config.*`, `*.lock`, `**/generated/**`
 
 ---
 
@@ -133,9 +133,9 @@ This document defines optimization strategies for different domains. The `strate
 - Breaking passing tests while implementing new features
 - Adding dead code that doesn't contribute to passing tests
 
-**Target file patterns:** Source files for the feature being implemented
+**Target file patterns:** `src/**/*.py`, `src/**/*.ts`, `lib/**/*.rs`, `app/**/*.rb`, `**/*.go`, `!**/*_test.go`
 
-**Protected file patterns:** Test/spec files (they define the goal), config files
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `**/*.test.*`, `**/*.spec.*`, `*.config.*`, `*.lock`
 
 ---
 
