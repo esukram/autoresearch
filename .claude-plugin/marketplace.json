@@ -1,7 +1,7 @@
 {
   "name": "autoresearch",
   "owner": {
-    "name": "Markus"
+    "name": "esukram"
   },
   "metadata": {
     "description": "Autonomous iterative optimization plugin for Claude Code"
