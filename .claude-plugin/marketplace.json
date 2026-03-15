@@ -1,0 +1,31 @@
+{
+  "name": "autoresearch",
+  "owner": {
+    "name": "Markus"
+  },
+  "metadata": {
+    "description": "Autonomous iterative optimization plugin for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "autoresearch",
+      "source": ".",
+      "description": "Autonomous iterative optimization loops — eval-driven loops that hypothesize, modify, evaluate, and commit/revert until goals are met.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Markus"
+      },
+      "license": "MIT",
+      "keywords": [
+        "optimization",
+        "eval-driven",
+        "autonomous",
+        "iterative",
+        "hill-climbing",
+        "test-coverage",
+        "performance",
+        "code-quality"
+      ]
+    }
+  ]
+}
