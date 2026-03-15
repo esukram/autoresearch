@@ -10,6 +10,8 @@ description: >
   Triggers on keywords: "autoresearch", "optimization loop", "eval loop",
   "iterative improvement", "auto-optimize", "eval-driven", "hill climbing",
   "autonomous optimization", "eval set", "binary eval".
+user-invocable: false
+allowed-tools: Bash, Read, Edit, Write, Grep, Glob, Agent
 ---
 
 # Autoresearch

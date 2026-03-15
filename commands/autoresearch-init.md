@@ -1,10 +1,8 @@
 ---
 name: autoresearch-init
 description: Initialize an autoresearch skill for a domain without starting the loop
-arguments:
-  - name: domain
-    description: Natural language description of the optimization domain
-    required: true
+argument-hint: "<domain>"
+allowed-tools: Bash, Read, Edit, Write, Grep, Glob
 ---
 
 # /autoresearch-init

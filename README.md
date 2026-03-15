@@ -2,6 +2,40 @@
 
 Autonomous iterative optimization for Claude Code. Generates standalone skills that run eval-driven improvement loops: hypothesize, modify, evaluate, commit/revert — repeating without human intervention until goals are met.
 
+## Installation
+
+### From a marketplace
+
+If this plugin is listed in a marketplace you've already added:
+
+```
+/plugin install autoresearch
+```
+
+### From GitHub
+
+```
+/plugin marketplace add <owner>/autoresearch-skill
+/plugin install autoresearch
+```
+
+### From a local directory
+
+```
+/plugin install /path/to/autoresearch-skill
+```
+
+### Testing locally
+
+```bash
+claude --plugin-dir /path/to/autoresearch-skill
+```
+
+After installation, choose a scope:
+- **User** — available across all projects
+- **Project** — shared with your team via `.claude/settings.json`
+- **Local** — project-specific, gitignored
+
 ## Quick Start
 
 ```
@@ -16,6 +50,10 @@ Autonomous iterative optimization for Claude Code. Generates standalone skills t
 | `/autoresearch-init "<domain>"` | Generate a skill without running the loop |
 | `/autoresearch-status` | Check progress of active loops |
 | `/autoresearch-resume` | Resume an interrupted loop |
+
+When installed as a plugin, commands are namespaced: `/autoresearch:autoresearch`, `/autoresearch:autoresearch-status`, etc.
+
+The core skill also auto-triggers when you mention keywords like "optimization loop", "eval loop", "iterative improvement", "auto-optimize", "eval-driven", or "hill climbing".
 
 ## How It Works
 
@@ -65,6 +103,12 @@ Autonomous iterative optimization for Claude Code. Generates standalone skills t
 - `feature-completion` — Implement until acceptance tests pass
 - `custom` — User-defined strategy
 
+## Requirements
+
+- Claude Code CLI
+- `git` (for experiment branch and commit/revert)
+- Project-specific tooling (test runners, linters, etc.) as needed by your evals
+
 ## Safety
 
 - All work on an isolated experiment branch
@@ -72,3 +116,7 @@ Autonomous iterative optimization for Claude Code. Generates standalone skills t
 - Improvements committed, regressions reverted
 - Eval infrastructure is never modified during the loop
 - Plateau detection prevents infinite loops
+
+## License
+
+MIT

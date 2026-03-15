@@ -2,32 +2,20 @@
   "name": "autoresearch",
   "version": "1.0.0",
   "description": "Autonomous iterative optimization loops. Generates standalone skills that repeatedly hypothesize improvements, modify code, evaluate results against binary pass/fail metrics, and commit or revert — running without human intervention until goals are met.",
-  "commands": [
-    {
-      "name": "autoresearch",
-      "description": "Start an autonomous optimization loop for a given goal",
-      "source": "commands/autoresearch.md"
-    },
-    {
-      "name": "autoresearch-status",
-      "description": "Check progress of a running or completed autoresearch loop",
-      "source": "commands/autoresearch-status.md"
-    },
-    {
-      "name": "autoresearch-init",
-      "description": "Initialize an autoresearch skill for a domain without starting the loop",
-      "source": "commands/autoresearch-init.md"
-    },
-    {
-      "name": "autoresearch-resume",
-      "description": "Resume an interrupted autoresearch loop from its last checkpoint",
-      "source": "commands/autoresearch-resume.md"
-    }
+  "author": {
+    "name": "Markus"
+  },
+  "license": "MIT",
+  "keywords": [
+    "optimization",
+    "eval-driven",
+    "autonomous",
+    "iterative",
+    "hill-climbing",
+    "test-coverage",
+    "performance",
+    "code-quality"
   ],
-  "skills": [
-    {
-      "name": "autoresearch",
-      "source": "skills/autoresearch/SKILL.md"
-    }
-  ]
+  "commands": ["./commands/"],
+  "skills": "./skills/"
 }

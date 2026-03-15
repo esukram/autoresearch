@@ -1,10 +1,8 @@
 ---
 name: autoresearch
 description: Start an autonomous optimization loop for a given goal
-arguments:
-  - name: goal
-    description: Natural language description of the optimization goal
-    required: true
+argument-hint: "<goal>"
+allowed-tools: Bash, Read, Edit, Write, Grep, Glob, Agent
 ---
 
 # /autoresearch

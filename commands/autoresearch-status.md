@@ -1,7 +1,7 @@
 ---
 name: autoresearch-status
 description: Check progress of a running or completed autoresearch loop
-arguments: []
+allowed-tools: Bash, Read, Glob
 ---
 
 # /autoresearch-status

@@ -1,7 +1,7 @@
 ---
 name: autoresearch-resume
 description: Resume an interrupted autoresearch loop from its last checkpoint
-arguments: []
+allowed-tools: Bash, Read, Edit, Write, Grep, Glob, Agent
 ---
 
 # /autoresearch-resume
