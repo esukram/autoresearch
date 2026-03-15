@@ -14,13 +14,13 @@ Autonomous iterative optimization for Claude Code. Generates standalone skills t
 ### From a local directory
 
 ```
-/plugin install /path/to/autoresearch-skill
+/plugin install /path/to/autoresearch
 ```
 
 ### Testing locally
 
 ```bash
-claude --plugin-dir /path/to/autoresearch-skill
+claude --plugin-dir /path/to/autoresearch
 ```
 
 After installation, choose a scope:
