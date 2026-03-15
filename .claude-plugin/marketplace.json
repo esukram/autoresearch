@@ -13,7 +13,7 @@
       "description": "Autonomous iterative optimization loops — eval-driven loops that hypothesize, modify, evaluate, and commit/revert until goals are met.",
       "version": "1.0.0",
       "author": {
-        "name": "Markus"
+        "name": "esukram"
       },
       "license": "MIT",
       "keywords": [
