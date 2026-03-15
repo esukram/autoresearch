@@ -23,9 +23,9 @@ This document defines optimization strategies for different domains. The `strate
 - Testing trivial getters/setters instead of business logic
 - Breaking existing tests while adding new ones
 
-**Target file patterns:** `tests/**/*.py`, `**/*_test.go`, `**/*.test.ts`
+**Target file patterns:** `tests/**/*.py`, `**/*_test.go`, `**/*.test.ts`, `**/*.test.js`, `**/*.spec.ts`, `test/**/*.rb`
 
-**Protected file patterns:** Source code files (when only adding tests), config files, lock files
+**Protected file patterns:** `src/**/*`, `lib/**/*`, `**/*.go`, `!**/*_test.go`, `*.config.*`, `*.lock`, `go.mod`, `go.sum`
 
 ---
 
@@ -53,7 +53,7 @@ This document defines optimization strategies for different domains. The `strate
 
 **Target file patterns:** `src/routes/**/*.ts`, `src/handlers/**/*.py`, `app/controllers/**/*.rb`, `**/middleware/**`, `**/services/**`
 
-**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `*.config.*`, `*.lock`, `**/migrations/**`
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `**/*.test.*`, `**/*.spec.*`, `*.config.*`, `*.lock`, `**/migrations/**`
 
 ---
 

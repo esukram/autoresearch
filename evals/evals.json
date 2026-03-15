@@ -191,6 +191,12 @@
           "path": ".claude/skills/autoresearch-*/eval.json",
           "pattern": "protected_files",
           "description": "eval.json defines protected files"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "C90|mccabe|max-complexity|cyclomatic",
+          "description": "eval.json references McCabe/cyclomatic complexity"
         }
       ]
     },
@@ -239,6 +245,12 @@
           "type": "file_exists",
           "path": ".claude/skills/autoresearch-*/scripts/eval_runner.sh",
           "description": "Shell eval_runner script exists for Rust project"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "pattern": "acceptance|feature|implement",
+          "description": "SKILL.md describes feature completion goal"
         }
       ]
     }
