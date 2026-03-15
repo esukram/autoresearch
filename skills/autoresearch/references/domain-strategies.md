@@ -23,9 +23,9 @@ This document defines optimization strategies for different domains. The `strate
 - Testing trivial getters/setters instead of business logic
 - Breaking existing tests while adding new ones
 
-**Target file patterns:** `tests/**/*.py`, `**/*_test.go`, `**/*.test.ts`
+**Target file patterns:** `tests/**/*.py`, `**/*_test.go`, `**/*.test.ts`, `**/*.test.js`, `**/*.spec.ts`, `test/**/*.rb`
 
-**Protected file patterns:** Source code files (when only adding tests), config files, lock files
+**Protected file patterns:** `src/**/*`, `lib/**/*`, `**/*.go`, `!**/*_test.go`, `*.config.*`, `*.lock`, `go.mod`, `go.sum`
 
 ---
 
@@ -51,9 +51,9 @@ This document defines optimization strategies for different domains. The `strate
 - Breaking correctness for speed
 - Optimizing the benchmark instead of the code
 
-**Target file patterns:** Route handlers, data access layers, middleware, hot-path functions
+**Target file patterns:** `src/routes/**/*.ts`, `src/handlers/**/*.py`, `app/controllers/**/*.rb`, `**/middleware/**`, `**/services/**`
 
-**Protected file patterns:** Tests, config, lock files, migration files
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `**/*.test.*`, `**/*.spec.*`, `*.config.*`, `*.lock`, `**/migrations/**`
 
 ---
 
@@ -79,9 +79,9 @@ This document defines optimization strategies for different domains. The `strate
 - Testing edge cases without understanding the expected behavior
 - Forgetting to test both the happy path and the error path for each edge case
 
-**Target file patterns:** Test files matching the project's test file pattern
+**Target file patterns:** `tests/**/*.py`, `**/*_test.go`, `**/*.test.ts`, `**/*.test.js`, `**/*.spec.ts`, `test/**/*.rb`
 
-**Protected file patterns:** Source code (when only hardening tests), config files
+**Protected file patterns:** `src/**/*`, `lib/**/*`, `*.config.*`, `*.lock`, `go.mod`, `go.sum`
 
 ---
 
@@ -106,9 +106,9 @@ This document defines optimization strategies for different domains. The `strate
 - Over-abstracting to reduce complexity metrics
 - Changing public APIs to fix style issues
 
-**Target file patterns:** Source files matching the linter's scope
+**Target file patterns:** `src/**/*.py`, `src/**/*.ts`, `lib/**/*.rb`, `**/*.go`, `src/**/*.rs`
 
-**Protected file patterns:** Test files, config files, generated files
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `**/*.test.*`, `*.config.*`, `*.lock`, `**/generated/**`
 
 ---
 
@@ -133,9 +133,9 @@ This document defines optimization strategies for different domains. The `strate
 - Breaking passing tests while implementing new features
 - Adding dead code that doesn't contribute to passing tests
 
-**Target file patterns:** Source files for the feature being implemented
+**Target file patterns:** `src/**/*.py`, `src/**/*.ts`, `lib/**/*.rs`, `app/**/*.rb`, `**/*.go`, `!**/*_test.go`
 
-**Protected file patterns:** Test/spec files (they define the goal), config files
+**Protected file patterns:** `tests/**/*`, `**/*_test.*`, `**/*.test.*`, `**/*.spec.*`, `*.config.*`, `*.lock`
 
 ---
 
@@ -155,6 +155,28 @@ When `strategy_hint` is `custom`, the eval.json should include an additional `st
 ```
 
 The agent follows the custom description as its primary strategy guide, falling back to general optimization principles for anything not specified.
+
+**Analysis approach:**
+- Read the `strategy_description` carefully to identify explicit constraints, priorities, and scope boundaries
+- Identify the measurable metrics implied by the description (e.g., query count, response time, file size)
+- Map the description to concrete files and code regions
+- If the description is vague, focus on the evals — they define the real success criteria
+
+**Hypothesis patterns:**
+- "Applying `<technique from strategy_description>` to `<file>` will improve `<metric>` toward the eval threshold"
+- "Refactoring `<component>` as described in the strategy will make `<eval_id>` pass"
+- "The strategy description mentions `<constraint>`, so limiting changes to `<scope>` and applying `<approach>` should improve results"
+- "Combining the strategy hint with eval failure output suggests `<specific change>` in `<file>`"
+
+**Common pitfalls:**
+- Ignoring explicit constraints in the strategy description (e.g., "do not modify X")
+- Over-interpreting vague descriptions — let the evals be the ground truth
+- Applying generic optimization techniques that contradict the custom strategy
+- Treating custom like a blank check — the description + evals define the bounds
+
+**Target file patterns:** Determined by `strategy_description` — typically the files and directories explicitly mentioned
+
+**Protected file patterns:** Any files excluded by the strategy description, plus standard protections (config, lock files, eval infrastructure)
 
 ---
 

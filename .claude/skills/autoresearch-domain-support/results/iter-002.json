@@ -1,0 +1,65 @@
+{
+  "iteration": 2,
+  "timestamp": "2026-03-15T18:55:51Z",
+  "results": [
+    {
+      "eval_id": "strategy-completeness",
+      "passed": true,
+      "output_summary": "PASS: All 6 strategies have required sections\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "strategy-depth",
+      "passed": true,
+      "output_summary": "PASS: All strategies have sufficient depth (3+ hypotheses, 3+ pitfalls)\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "json-examples-valid",
+      "passed": true,
+      "output_summary": "PASS: All 8 concrete JSON examples are valid\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "script-syntax-valid",
+      "passed": true,
+      "output_summary": "PASS: All 4 script templates pass syntax checks (Python: 2, JS: 1, Shell: 1)\n",
+      "duration_seconds": 0.08,
+      "timed_out": false
+    },
+    {
+      "eval_id": "eval-domain-coverage",
+      "passed": true,
+      "output_summary": "PASS: 5/6 strategies covered in evals.json\n  Note: still missing custom\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "cross-ref-consistency",
+      "passed": true,
+      "output_summary": "PASS: Strategy references are consistent across files\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "pass-condition-docs",
+      "passed": true,
+      "output_summary": "PASS: All 5 pass_condition types are documented with examples\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    },
+    {
+      "eval_id": "strategy-actionability",
+      "passed": false,
+      "output_summary": "FAIL: Strategy 'performance-optimization' lacks concrete file glob patterns\nFAIL: Strategy 'test-hardening' lacks concrete file glob patterns\nFAIL: Strategy 'code-quality' lacks concrete file glob patterns\nFAIL: Strategy 'feature-completion' lacks concrete file glob patterns\n",
+      "duration_seconds": 0.04,
+      "timed_out": false
+    }
+  ],
+  "pass_count": 7,
+  "fail_count": 1,
+  "total": 8
+}

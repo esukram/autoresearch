@@ -145,6 +145,114 @@
           "description": "eval.json has 90% coverage threshold"
         }
       ]
+    },
+    {
+      "id": "python-code-quality",
+      "prompt": "Fix all linting errors and reduce cyclomatic complexity below 10 for this Python project",
+      "setup": {
+        "description": "A Python project with ruff linting, high complexity functions, and multiple code quality warnings",
+        "language": "python",
+        "files": {
+          "pyproject.toml": "[tool.ruff]\nselect = [\"E\", \"F\", \"W\", \"C90\"]\n\n[tool.ruff.mccabe]\nmax-complexity = 10\n\n[project]\nname = \"example\"\nversion = \"0.1.0\"\n",
+          "src/processor.py": "import os, sys, json\n\ndef process_data(data, mode, flag1, flag2, flag3):\n    result = []\n    if mode == 'a':\n        if flag1:\n            if data:\n                for item in data:\n                    if item > 0:\n                        if flag2:\n                            result.append(item * 2)\n                        else:\n                            if flag3:\n                                result.append(item * 3)\n                            else:\n                                result.append(item)\n                    else:\n                        result.append(0)\n            else:\n                return []\n        else:\n            return None\n    elif mode == 'b':\n        result = [x for x in data if x > 0]\n    else:\n        pass\n    return result\n\ndef unused_helper():\n    x = 1\n    return\n",
+          "tests/test_processor.py": "from src.processor import process_data\n\ndef test_process_mode_a():\n    assert process_data([1, 2, 3], 'a', True, True, False) == [2, 4, 6]\n\ndef test_process_mode_b():\n    assert process_data([1, -1, 2], 'b', False, False, False) == [1, 2]\n"
+        }
+      },
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "description": "Generated skill SKILL.md exists"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "description": "Generated eval.json exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "ruff|lint|quality|complexity",
+          "description": "eval.json contains lint/quality-related eval"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "src/**/*.py|src/",
+          "description": "eval.json targets source files"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/scripts/eval_runner.py",
+          "description": "Python eval_runner script exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "protected_files",
+          "description": "eval.json defines protected files"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "C90|mccabe|max-complexity|cyclomatic",
+          "description": "eval.json references McCabe/cyclomatic complexity"
+        }
+      ]
+    },
+    {
+      "id": "rust-feature-completion",
+      "prompt": "Implement the missing features in this Rust library until all acceptance tests pass",
+      "setup": {
+        "description": "A Rust library with acceptance tests for a stack data structure, implementation is incomplete",
+        "language": "rust",
+        "files": {
+          "Cargo.toml": "[package]\nname = \"collections\"\nversion = \"0.1.0\"\nedition = \"2021\"\n",
+          "src/lib.rs": "pub struct Stack<T> {\n    elements: Vec<T>,\n}\n\nimpl<T> Stack<T> {\n    pub fn new() -> Self {\n        Stack { elements: Vec::new() }\n    }\n\n    pub fn push(&mut self, item: T) {\n        self.elements.push(item);\n    }\n\n    pub fn pop(&mut self) -> Option<T> {\n        self.elements.pop()\n    }\n\n    // TODO: implement peek, is_empty, len, clear\n}\n",
+          "tests/acceptance.rs": "use collections::Stack;\n\n#[test]\nfn test_push_pop() {\n    let mut s = Stack::new();\n    s.push(1);\n    s.push(2);\n    assert_eq!(s.pop(), Some(2));\n    assert_eq!(s.pop(), Some(1));\n}\n\n#[test]\nfn test_peek() {\n    let mut s = Stack::new();\n    s.push(42);\n    assert_eq!(s.peek(), Some(&42));\n    assert_eq!(s.pop(), Some(42));\n}\n\n#[test]\nfn test_is_empty() {\n    let mut s: Stack<i32> = Stack::new();\n    assert!(s.is_empty());\n    s.push(1);\n    assert!(!s.is_empty());\n}\n\n#[test]\nfn test_len() {\n    let mut s = Stack::new();\n    assert_eq!(s.len(), 0);\n    s.push(1);\n    s.push(2);\n    assert_eq!(s.len(), 2);\n}\n\n#[test]\nfn test_clear() {\n    let mut s = Stack::new();\n    s.push(1);\n    s.push(2);\n    s.clear();\n    assert!(s.is_empty());\n    assert_eq!(s.len(), 0);\n}\n"
+        }
+      },
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "description": "Generated skill SKILL.md exists"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "description": "Generated eval.json exists"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "cargo test|acceptance",
+          "description": "eval.json uses cargo test or references acceptance tests"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "src/",
+          "description": "eval.json targets source files"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/eval.json",
+          "pattern": "tests/|_test",
+          "description": "eval.json protects test files"
+        },
+        {
+          "type": "file_exists",
+          "path": ".claude/skills/autoresearch-*/scripts/eval_runner.sh",
+          "description": "Shell eval_runner script exists for Rust project"
+        },
+        {
+          "type": "file_contains",
+          "path": ".claude/skills/autoresearch-*/SKILL.md",
+          "pattern": "acceptance|feature|implement",
+          "description": "SKILL.md describes feature completion goal"
+        }
+      ]
     }
   ]
 }

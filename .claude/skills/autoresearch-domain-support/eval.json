@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "goal": "Optimize domain support coverage and quality across all 6 autoresearch strategy types",
+  "evals": [
+    {
+      "id": "strategy-completeness",
+      "description": "All 6 domain strategies have required sections: Goal, Analysis approach, Hypothesis patterns, Common pitfalls",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py completeness",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "strategy-depth",
+      "description": "Each strategy has at least 3 hypothesis patterns and 3 common pitfalls",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py depth",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "json-examples-valid",
+      "description": "All JSON code blocks in eval-formats.md are valid JSON",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py json-examples",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "script-syntax-valid",
+      "description": "Python, JS, and Shell template scripts pass syntax validation",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py script-syntax",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "eval-domain-coverage",
+      "description": "evals.json test cases cover at least 5 of 6 domain strategies",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py eval-coverage",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "cross-ref-consistency",
+      "description": "Strategy names are consistent across domain-strategies.md, SKILL.md, and autoresearch.md",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py cross-refs",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "pass-condition-docs",
+      "description": "All 5 pass_condition types are documented with examples",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py pass-conditions",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": true
+    },
+    {
+      "id": "strategy-actionability",
+      "description": "Each strategy provides concrete file glob patterns and tool guidance",
+      "command": "python3 .claude/skills/autoresearch-domain-support/scripts/validate_domains.py actionability",
+      "pass_condition": { "type": "exit_code_zero" },
+      "required": false
+    }
+  ],
+  "config": {
+    "max_iterations": 90,
+    "timeout_per_eval_seconds": 180,
+    "timeout_per_iteration_seconds": 600,
+    "target_files": [
+      "skills/autoresearch/references/domain-strategies.md",
+      "skills/autoresearch/references/eval-formats.md",
+      "skills/autoresearch/references/skill-template.md",
+      "skills/autoresearch/SKILL.md",
+      "commands/autoresearch.md",
+      "evals/evals.json"
+    ],
+    "protected_files": [
+      ".claude-plugin/*",
+      "LICENSE",
+      "README.md",
+      "skills/autoresearch/references/loop-protocol.md",
+      "skills/autoresearch/references/safety-rules.md",
+      ".claude/skills/autoresearch-domain-support/**"
+    ],
+    "strategy_hint": "custom",
+    "strategy_description": "Improve domain support by: (1) expanding the custom strategy with structured sections, hypothesis patterns, and pitfalls; (2) adding concrete glob patterns to strategies that only have descriptive text; (3) adding test cases to evals.json for underrepresented domains (code-quality, feature-completion). Focus on making each strategy actionable with language-specific examples.",
+    "plateau_threshold": 5,
+    "script_language": "python"
+  }
+}
