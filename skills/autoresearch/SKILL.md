@@ -82,6 +82,35 @@ The primary entry point is the `/autoresearch` command. Supporting commands:
 - **`/autoresearch-resume`** — Resume an interrupted loop from its last checkpoint
 - **`/autoresearch-status`** — Check progress of a running or completed loop
 
+## Execution Modes
+
+Autoresearch supports two execution modes for running the optimization loop:
+
+### Inside Claude Code (default)
+
+Run the loop interactively with Claude Code as the agent. Use `/autoresearch "<goal>"` or `/autoresearch-resume`. Claude Code reads files, edits code, runs evals, and makes git decisions directly.
+
+Best for: interactive sessions, debugging, goals requiring subjective judgment (llm_judge evals).
+
+### Standalone (outside Claude Code)
+
+Run the loop as a standalone Python script using the Claude API directly. The generated `runner.py` script handles the full loop — baseline, iteration, git operations — without needing Claude Code open.
+
+```bash
+pip install anthropic
+export ANTHROPIC_API_KEY=sk-...
+python3 .claude/skills/autoresearch-<slug>/scripts/runner.py
+```
+
+Useful flags:
+- `--dry-run` — Validate config without executing
+- `--resume` — Continue from last checkpoint
+- `--verbose` — Print full Claude API responses
+- `--model <name>` — Choose model (sonnet, opus, haiku)
+- `--max-iter N` — Override iteration limit
+
+Best for: overnight runs, CI pipelines, headless environments, batch optimization.
+
 ## Generated Skill Structure
 
 Each generated skill is self-contained and portable:
@@ -92,7 +121,8 @@ Each generated skill is self-contained and portable:
 ├── eval.json             # Binary eval set definitions
 ├── scripts/
 │   ├── eval_runner.<ext> # Deterministic eval execution
-│   └── loop_tracker.<ext># State machine for the optimization loop
+│   ├── loop_tracker.<ext># State machine for the optimization loop
+│   └── runner.py         # Standalone runner (Claude API, always Python)
 ├── state.json            # Loop state (iteration, scores, hypotheses)
 └── results/
     ├── baseline.json     # Initial eval results

@@ -519,6 +519,14 @@ fi
 [ "$PASS_COUNT" -eq "$TOTAL" ] && exit 0 || exit 1
 ```
 
+## Generated runner.py Template
+
+The standalone runner script is generated from [runner-template.md](runner-template.md). It is always Python regardless of the project's script language, since it uses the Anthropic Python SDK.
+
+The runner template requires these additional variables:
+- `{{SKILL_DIR}}` — Relative path from project root (e.g., `.claude/skills/autoresearch-test-coverage`)
+- `{{EVAL_RUNNER_CMD}}` — Full command to invoke eval_runner (e.g., `python3 .claude/skills/autoresearch-test-coverage/scripts/eval_runner.py`)
+
 ## Generated loop_tracker Template (Python)
 
 ```python

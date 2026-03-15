@@ -44,7 +44,8 @@ Generate a complete standalone skill in the user's project:
    ├── eval.json
    ├── scripts/
    │   ├── eval_runner.<ext>
-   │   └── loop_tracker.<ext>
+   │   ├── loop_tracker.<ext>
+   │   └── runner.py
    ├── state.json
    └── results/
    ```
@@ -63,6 +64,7 @@ Generate a complete standalone skill in the user's project:
 4. **Generate scripts** in the confirmed language:
    - `eval_runner` — Uses the appropriate template from skill-template.md
    - `loop_tracker` — Uses the Python template (always Python for state management)
+   - `runner.py` — Uses the template from [runner-template.md](../skills/autoresearch/references/runner-template.md) (always Python, uses Anthropic SDK). Fill in `{{SLUG}}`, `{{SKILL_DIR}}`, and `{{EVAL_RUNNER_CMD}}`.
    - Make scripts executable (`chmod +x`)
 
 5. **Initialize state.json:**
@@ -81,7 +83,18 @@ Generate a complete standalone skill in the user's project:
    }
    ```
 
-6. **Show the user what was generated** — brief summary of files and eval definitions. Ask for confirmation before proceeding.
+6. **Show the user what was generated** — brief summary of files and eval definitions.
+
+7. **Ask the user to choose an execution mode:**
+
+   **(a) Inside Claude Code** (default) — Proceed to Phase 3-5 below. Claude Code acts as the agent, running the full loop interactively.
+
+   **(b) Standalone** — Print runner instructions and stop:
+   - Remind the user to install the dependency: `pip install anthropic`
+   - Remind the user to set `ANTHROPIC_API_KEY`
+   - Print the exact command: `python3 .claude/skills/autoresearch-<slug>/scripts/runner.py`
+   - Mention useful flags: `--dry-run` to validate config, `--verbose` for debugging, `--model` to select model
+   - **Do NOT proceed to Phase 3.** The runner handles baseline, loop, and git operations independently.
 
 ## Phase 3: Baseline
 
