@@ -1,10 +1,19 @@
 {
   "status": "running",
   "state": "decide",
-  "iteration": 1,
+  "iteration": 2,
   "baseline": null,
-  "current": null,
-  "best": null,
+  "current": {
+    "pass_count": 6,
+    "fail_count": 2,
+    "total": 8
+  },
+  "best": {
+    "pass_count": 6,
+    "fail_count": 2,
+    "total": 8,
+    "iteration": 1
+  },
   "hypotheses": [
     {
       "iteration": 1,
@@ -14,10 +23,20 @@
         "skills/autoresearch/references/domain-strategies.md"
       ],
       "timestamp": "2026-03-15T18:53:59Z",
+      "result": "committed"
+    },
+    {
+      "iteration": 2,
+      "hypothesis": "Adding test cases for code-quality and feature-completion strategies to evals.json will bring domain coverage from 3/6 to 5/6, passing the eval-domain-coverage eval",
+      "target_eval": "eval-domain-coverage",
+      "target_files": [
+        "evals/evals.json"
+      ],
+      "timestamp": "2026-03-15T18:55:11Z",
       "result": null
     }
   ],
   "plateau_counter": 0,
   "started_at": "2026-03-15T18:53:25Z",
-  "last_updated": "2026-03-15T18:54:44Z"
+  "last_updated": "2026-03-15T18:55:59Z"
 }
