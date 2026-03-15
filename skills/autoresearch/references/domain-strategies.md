@@ -156,6 +156,28 @@ When `strategy_hint` is `custom`, the eval.json should include an additional `st
 
 The agent follows the custom description as its primary strategy guide, falling back to general optimization principles for anything not specified.
 
+**Analysis approach:**
+- Read the `strategy_description` carefully to identify explicit constraints, priorities, and scope boundaries
+- Identify the measurable metrics implied by the description (e.g., query count, response time, file size)
+- Map the description to concrete files and code regions
+- If the description is vague, focus on the evals — they define the real success criteria
+
+**Hypothesis patterns:**
+- "Applying `<technique from strategy_description>` to `<file>` will improve `<metric>` toward the eval threshold"
+- "Refactoring `<component>` as described in the strategy will make `<eval_id>` pass"
+- "The strategy description mentions `<constraint>`, so limiting changes to `<scope>` and applying `<approach>` should improve results"
+- "Combining the strategy hint with eval failure output suggests `<specific change>` in `<file>`"
+
+**Common pitfalls:**
+- Ignoring explicit constraints in the strategy description (e.g., "do not modify X")
+- Over-interpreting vague descriptions — let the evals be the ground truth
+- Applying generic optimization techniques that contradict the custom strategy
+- Treating custom like a blank check — the description + evals define the bounds
+
+**Target file patterns:** Determined by `strategy_description` — typically the files and directories explicitly mentioned
+
+**Protected file patterns:** Any files excluded by the strategy description, plus standard protections (config, lock files, eval infrastructure)
+
 ---
 
 ## Cross-Strategy Guidelines
